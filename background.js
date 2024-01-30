@@ -1,4 +1,4 @@
-var authenticdisplay = 0
+var authenticDisplay = 0
 //this basically is if the first thing in the section should be the name of the section, since you cant select those on chrome.
 
 var messages = [
@@ -350,11 +350,11 @@ var messages = [
   ]
 ]
 
-var loadedmessages = []; //Logging all the registered texts, so we can get them later! :D
+var loadedMessages = []; //Logging all the registered texts, so we can get them later! :D
 
 function safechatSelected(info, tab) {
-  console.log(loadedmessages[info.menuItemId - 1])
-  chrome.tabs.sendMessage(tab.id, { command: "insertSafechat", text: loadedmessages[info.menuItemId - 1] });
+  console.log(loadedMessages[info.menuItemId - 1])
+  chrome.tabs.sendMessage(tab.id, { command: "insertSafechat", text: loadedMessages[info.menuItemId - 1] });
 }
 
 function makeButton(title, parent) {  //Yippee!!! a premade function for this !!!
@@ -368,52 +368,26 @@ function makeButton(title, parent) {  //Yippee!!! a premade function for this !!
       { "title": title, "contexts": ["editable"], "onclick": safechatSelected }
     );
   }
-  loadedmessages.push(title)
+  loadedMessages.push(title)
   return id
 }
 
-//Sorry for the terrible looping :sob:
+const createMenuItems = (messages, parent) => {
+  return messages.map((item) => {
+    if (Array.isArray(item)) {
+      const [category, ...subItems] = item;
 
-//The only reason i did this was because theres up to 5 sections you can open, and im not good with those types of loops. D:
-for (var a = 0; a < messages.length; a++) {
-  var message = messages[a];
-  if (Array.isArray(message) == false) {
-    makeButton(message)
-  }
-  else {
-    var parent = chrome.contextMenus.create({ "title": message[0], "contexts": ["editable"] });
-    loadedmessages.push("")
-    for (var e = authenticdisplay; e < message.length; e++) {
-      if (Array.isArray(message[e]) == false) {
-        makeButton(message[e], parent)
+      const categoryMenuItem = chrome.contextMenus.create({ "title": item[0], "parentId": parent, "contexts": ["editable"] });
+      loadedMessages.push("")
+
+      if (authenticDisplay == 0) {
+        makeButton(item[0], categoryMenuItem)
       }
-      else {
-        parent2 = chrome.contextMenus.create({ "title": message[e][0], "parentId": parent, "contexts": ["editable"] });
-        loadedmessages.push("")
-        for (var i = authenticdisplay; i < message[e].length; i++) {
-          if (Array.isArray(message[e][i]) == false) {
-            makeButton(message[e][i], parent2)
-          }
-          else {
-            parent3 = chrome.contextMenus.create({ "title": message[e][i][0], "parentId": parent2, "contexts": ["editable"] });
-            loadedmessages.push("")
-            for (var o = authenticdisplay; o < message[e][i].length; o++) {
-
-
-              if (Array.isArray(message[e][i][o]) == false) {
-                makeButton(message[e][i][o], parent3)
-              }
-              else {
-                parent4 = chrome.contextMenus.create({ "title": message[e][i][o][0], "parentId": parent3, "contexts": ["editable"] });
-                loadedmessages.push("")
-                for (var u = authenticdisplay; u < message[e][i][o].length; u++) {
-                  makeButton(message[e][i][o][u], parent4)
-                }
-              }
-            }
-          }
-        }
-      }
+      createMenuItems(subItems, categoryMenuItem)
+    } else {
+      return makeButton(item, parent)
     }
-  }
-}
+  });
+};
+
+createMenuItems(messages)
