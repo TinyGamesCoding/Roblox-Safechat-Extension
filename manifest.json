@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Roblox Safechat",
 	"description": "Roblox's old safechat feature, from 2007 to 2014, ported over to chrome! Made by @Tiny_Games on YT.",
-	"version": "1.0",
+	"version": "1.1",
 	"icons": {
 		"16": "icons/icon32.png",
 		"32": "icons/icon32.png",
