@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Roblox Safechat</title>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <h1 style="text-align: center; display: none;">An error occured in the messages json!</h1>
+    <hr style="width: 250px; display: none;"></hr>
+    <h2 style="text-align: center; display: none;" id="ErrorMessage"></h2>
+    <hr style="width: 250px; display: none;"></hr>
+    <p style="text-align: center; display: none; font-size: medium;">Double check your JSON! One accidential comma is all it takes to invalidate it.</p>
+
+    <h1 style="text-align: center;">Safechat Settings</h1>
+    <h3 style="text-align: center;">Reload the tab to apply changes!</h3>
+    <a href="https://github.com/TinyGamesCoding/Roblox-Safechat-Extension" target="_blank">
+        <p style="text-align: center; font-size: medium;">Github Page</p>
+    </a> 
+
+    <p style="text-align: center; display: none; font-size: medium;">
+        Or, it could possibly be an extension 
+        <a href="https://github.com/TinyGamesCoding/Roblox-Safechat-Extension" target="_blank" style="display: none;">update!</a> 
+         Probably not though.
+    </p>
+    
+    <hr style="width: 250px;"></hr>
+    <form id="safechatSettingsMenu">
+        <h2 style="width: 250px;">General Settings</h2>
+        <input type="checkbox" id="revertClipboard"> Revert clipboard
+        <p>If enabled, reverts the clipboard after inputting a message.</p><br />
+        
+        <hr style="width: 250px;"></hr>
+        <h2 style="width: 250px;">Right Click Settings</h2>
+        <input type="checkbox" id="contextMenuEnabled"> Enabled
+        <p>Shows/Hides the safechat menu when you right click a textbox.</p><br />
+
+        <input type="checkbox" id="selectableGroups"> Selectable Groups
+        <p>If enabled, allows the name of the group to be selectable.</p><br />
+
+        <hr style="width: 250px;"></hr>
+        <h2 style="width: 250px;">Textbox Settings</h2>
+        <input type="checkbox" id="textboxMenuEnabled"> Enabled
+        <p>Shows/Hides the safechat menu when you are in a textbox.</p><br />
+
+        <input type="number" id="normalOpacity" step="0.1" min="0" max="1" placeholder="0.5"> Normal Icon Transparency
+        <p>Sets the transparency of the normal icon.</p><br />
+
+        <input type="checkbox" id="oldSafechatLook"> Old Safechat Look
+        <p>Enables/disables the old look, which is just Comic Sans.</p><br />
+    </form>
+    <hr style="width: 250px; display: none;"></hr>
+    <hr style="width: 250px;"></hr>
+    <h2 style="text-align: center;" id="ResetSettingsText"><button type="button" id="resetSettings">Reset to default settings</button></h2>
+</body>
+
+</html>

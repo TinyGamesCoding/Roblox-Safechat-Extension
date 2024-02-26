@@ -1,7 +1,4 @@
-var authenticDisplay = 0
-//this basically is if the first thing in the section should be the name of the section, since you cant select those on chrome.
-
-var messages = [
+[
   "Use the Chat menu to talk to me.",
   "I can only see message chats.",
   ["Hello",
@@ -9,7 +6,7 @@ var messages = [
     ["Howdy", "Howdy partner!"],
     ["Greetings", "Greetings everyone", "Greetings Robloxians!", "Seasons greetings!"],
     ["Welcome", "Welcome to my place", "Welcome to our base", "Welcome to my barbeque"],
-    "Hey there!"
+    "Hey there!",
     ["What's up?", "How are you doing?", "How's it going?", "What's new?"],
     ["Good day", "Good morning", "Good afternoon", "Good evening", "Good night"],
     ["Silly", "Waaaaaaaz up?!", "Hullo!", "Behold greatness, mortals!", "Pardon me, is this Sparta?", "THIS IS SPARTAAAA!"],
@@ -64,7 +61,7 @@ var messages = [
       ["Mythical Beasts", "Dragons", "Unicorns", "Sea Serpents", "Sphinx", "Cyclops", "Minotaurs", "Goblins", "Honest Politicians", "Ghosts", "Scylla and Charybdis"]
     ],
     ["Games",
-      ["Roblox", "BrickBattle", "Community Building", "Roblox Minigames", "Contest Place",],
+      ["Roblox", "BrickBattle", "Community Building", "Roblox Minigames", "Contest Place"],
       "Action",
       "Puzzle",
       "Strategy",
@@ -275,7 +272,7 @@ var messages = [
         "i r teh pwnz0r!",
         "w00t!",
         "z0mg h4x!",
-        "ub3rR0xXorzage!",
+        "ub3rR0xXorzage!"
     ]
   ],
   [
@@ -331,7 +328,7 @@ var messages = [
     "^_^",
     "<(0_0<) <(0_0)> (>0_0)> KIRBY DANCE",
     ")';",
-    ":3",
+    ":3"
   ],
   [
       "Ratings",
@@ -349,45 +346,3 @@ var messages = [
       "I give it a 10 out of 10!"
   ]
 ]
-
-var loadedMessages = []; //Logging all the registered texts, so we can get them later! :D
-
-function safechatSelected(info, tab) {
-  console.log(loadedMessages[info.menuItemId - 1])
-  chrome.tabs.sendMessage(tab.id, { command: "insertSafechat", text: loadedMessages[info.menuItemId - 1] });
-}
-
-function makeButton(title, parent) {  //Yippee!!! a premade function for this !!!
-  var id
-  if(parent != null) {
-    id = chrome.contextMenus.create(
-      { "title": title, "contexts": ["editable"], "parentId": parent, "onclick": safechatSelected }
-    );
-  } else {
-    id = chrome.contextMenus.create(
-      { "title": title, "contexts": ["editable"], "onclick": safechatSelected }
-    );
-  }
-  loadedMessages.push(title)
-  return id
-}
-
-const createMenuItems = (messages, parent) => {
-  return messages.map((item) => {
-    if (Array.isArray(item)) {
-      const [category, ...subItems] = item;
-
-      const categoryMenuItem = chrome.contextMenus.create({ "title": item[0], "parentId": parent, "contexts": ["editable"] });
-      loadedMessages.push("")
-
-      if (authenticDisplay == 0) {
-        makeButton(item[0], categoryMenuItem)
-      }
-      createMenuItems(subItems, categoryMenuItem)
-    } else {
-      return makeButton(item, parent)
-    }
-  });
-};
-
-createMenuItems(messages)
