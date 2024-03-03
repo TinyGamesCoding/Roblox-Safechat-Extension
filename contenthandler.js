@@ -24,7 +24,6 @@ function reloadSettings(firstLoad) {
     chrome.runtime.sendMessage({ info: "loadSafechatArray" }, function (response) {
       if (response && response.success) {
         safechatMessages = response.data
-        console.log("woah")
         if(firstLoad == true) chrome.runtime.sendMessage({ info: "sendSafechatInfo", settings: settings, safechatMessages: safechatMessages })
       } else {
         messageLoadingError = true
