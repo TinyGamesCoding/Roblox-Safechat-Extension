@@ -1,5 +1,5 @@
 # Roblox Safechat Extension
-A Google Chrome extension that brings the safechat to most textboxes, by a button, or right clicking it.
+A Google Chrome extension that brings Roblox's old safechat feature to most textboxes by a button, or right-clicking it.
 
 This is a project I made for fun!
 If you want to upload this to the chrome web store, and I haven't already, just please give me credit! ([@Tiny_Games](https://www.youtube.com/@Tiny_Games))
@@ -18,7 +18,7 @@ If you want to upload this to the chrome web store, and I haven't already, just 
 
 You can change settings by clicking on the extension icon, like how you would for other extensions.
 
-## Demonstration of how it works:
+## Video demonstration of how it works:
 
 V2
 [![Roblox Safechat Extension - v2 Demonstration](https://img.youtube.com/vi/3RpFMcyJ-II/0.jpg)](https://www.youtube.com/watch?v=3RpFMcyJ-II)
